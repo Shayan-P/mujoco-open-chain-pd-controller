@@ -13,7 +13,7 @@
 	</option>
 
   <worldbody>
-    <geom type="sphere" size="0.05" pos="1 0 1" />     <!-- helps showing desired end effector position. remove later -->
+    <geom type="sphere" size="0.05" pos="-1 0 1" />     <!-- helps showing desired end effector position. remove later -->
 
     <light pos="0 1 1" dir="0 -1 -1" diffuse="-1 1 1"/>
     <geom type="plane" size="1 1 0.1" rgba=".9 0 0 1"/>

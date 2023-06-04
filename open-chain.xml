@@ -1,0 +1,44 @@
+<mujoco model="open-chain">
+  <default>
+    <geom rgba=".8 .6 .4 1" type="cylinder" size="0.02"/>
+  </default>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="1 1 1" rgb2=".6 .8 1" width="256" height="256"/>
+  </asset>
+
+	<option gravity="0 0 -9.8">
+		<flag contact="disable" /> 
+        <!-- so that we see no collision between different rods -->
+	</option>
+
+  <worldbody>
+    <geom type="sphere" size="0.05" pos="1 0 1" />     <!-- helps showing desired end effector position. remove later -->
+
+    <light pos="0 1 1" dir="0 -1 -1" diffuse="-1 1 1"/>
+    <geom type="plane" size="1 1 0.1" rgba=".9 0 0 1"/>
+    <body pos="0 0 1.7">
+      <joint type="hinge" axis = "0 1 0" name="joint1"/>
+      <geom type="cylinder" fromto="0 0 0  0 0 -0.5"/>
+      <inertial mass="0.5" pos="0 0 -0.25" diaginertia="0.01 0.01 0.01" />
+      <body pos="0 0 -0.5">
+        <joint type="hinge" axis = "0 1 0" name="joint2"/>
+        <geom type="cylinder" fromto="0 0 0  .5 0 0"/>
+        <inertial mass="0.5" pos="0.25 0 0" diaginertia="0.01 0.01 0.01" />
+
+        <body pos="0.5 0 0">
+            <joint type="hinge" axis = "0 1 0" name="joint3"/>
+            <geom type="cylinder" fromto="0 0 0  0 0 -0.5"/>
+            <inertial mass="0.5" pos="0 0 -0.25" diaginertia="0.01 0.01 0.01" />
+            <site pos="0 0 -0.5" name="end_effector" />
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  	<actuator>
+        <motor joint="joint1" name="torque1" gear="1" ctrllimited="true" ctrlrange="-5 5" />
+        <motor joint="joint2" name="torque2" gear="1" ctrllimited="true" ctrlrange="-5 5" />
+        <motor joint="joint3" name="torque3" gear="1" ctrllimited="true" ctrlrange="-5 5" />
+	</actuator>
+</mujoco>

@@ -56,15 +56,37 @@ function find_torque_pd_controller(model, data, pd)
     return τ;
 end
 
+let last_t = time(), sum = nothing
+    function get_dt()
+        cur_t = time()
+        ans = cur_t - last_t
+        last_t = cur_t
+        return ans # in seconds
+    end
+    global function integral(e)
+        # numerically integrates e over time
+        # returns the current value of integral
+        if (sum === nothing)
+            sum = similar(e)
+            fill!(sum, 0)
+            get_dt() # set up dt
+        else
+            sum += get_dt() * e
+        end
+        return sum
+    end
+end
+
 function find_torque_pd_controller_feed_forward(model, data, pd)
     kd = 11
     kp = kd * kd / 4
+    ki = 2
     ee_pos = pyconvert(Array, data.site("end_effector").xpos)
     dq = pyconvert(Array, data.qvel)
     Jp, Jr = calculate_ee_jacp_jacr(model, data)
     e = pd - ee_pos
     e_dot = -Jp *  dq
-    F = kp * e + kd * e_dot
+    F = kp * e + kd * e_dot + ki * integral(e)
     τ = transpose(Jp) * F
     τ_forward = find_torque_static_controller(model, data)
     return τ + τ_forward;

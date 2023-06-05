@@ -32,7 +32,7 @@ function find_torque_damper_controller(model, data)
 end
 
 # calculates spacial jacobian of end effector
-function calculate_ee_jacp(model, data)
+function calculate_ee_jacp_jacr(model, data)
     site_id = data.site("end_effector").id
     nv = model.nv
     jacp = numpy.zeros((3, nv))
@@ -40,12 +40,12 @@ function calculate_ee_jacp(model, data)
     mujoco.mj_jacSite(model, data, jacp, jacr, site_id)
     jacp = pyconvert(Array, jacp)
     jacr = pyconvert(Array, jacr)
-    return jacp
+    return jacp, jacr
 end
 
 function find_torque_pd_controller(model, data, pd)
     kp = 200
-    kd = 40
+    kd = 110
     ee_pos = pyconvert(Array, data.site("end_effector").xpos)
     dq = pyconvert(Array, data.qvel)
     J = calculate_ee_jacp(model, data)
@@ -54,6 +54,20 @@ function find_torque_pd_controller(model, data, pd)
     F = kp * e + kd * e_dot
     τ = transpose(J) * F
     return τ;
+end
+
+function find_torque_pd_controller_feed_forward(model, data, pd)
+    kd = 11
+    kp = kd * kd / 4
+    ee_pos = pyconvert(Array, data.site("end_effector").xpos)
+    dq = pyconvert(Array, data.qvel)
+    Jp, Jr = calculate_ee_jacp_jacr(model, data)
+    e = pd - ee_pos
+    e_dot = -Jp *  dq
+    F = kp * e + kd * e_dot
+    τ = transpose(Jp) * F
+    τ_forward = find_torque_static_controller(model, data)
+    return τ + τ_forward;
 end
 
 function apply_torque!(model, data, τ)
@@ -65,7 +79,7 @@ function apply_torque!(model, data, τ)
     # end
 end
 
-controller = find_torque_pd_controller # choose controller here
+controller = find_torque_pd_controller_feed_forward # choose controller here
 
 for i=1:10000
     if pyconvert(Bool, viewer.is_alive)

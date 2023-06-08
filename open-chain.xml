@@ -13,11 +13,12 @@
 	</option>
 
   <worldbody>
-    <geom type="sphere" size="0.05" pos="-1 0 1" />     <!-- helps showing desired end effector position. remove later -->
-
     <light pos="0 1 1" dir="0 -1 -1" diffuse="-1 1 1"/>
-    <geom type="plane" size="1 1 0.1" rgba=".9 0 0 1"/>
-    <body pos="0 0 1.7">
+    <geom type="plane" size="1 1 0.1" rgba=".9 0 0 1" pos="0 0 -1.7"/>
+    <body name="tracker-ball">
+      <geom type="sphere" size="0.05"/>     <!-- helps showing desired end effector position. remove later -->
+    </body>
+    <body pos="0 0 0">
       <joint type="hinge" axis = "0 1 0" name="joint1"/>
       <geom type="cylinder" fromto="0 0 0  0 0 -0.5"/>
       <inertial mass="0.5" pos="0 0 -0.25" diaginertia="0.01 0.01 0.01" />

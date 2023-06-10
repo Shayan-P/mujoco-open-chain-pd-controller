@@ -40,30 +40,16 @@
     <!-- ********** INERTIAL PROPERTIES (LINKS) ********** -->
     <link name="world"/>
 
-    <link name="base_link">
-        <inertial>
-            <mass value="0.5"/>
-            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-            <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0.0" ixz="0.0" iyz="0.0"/>
-        </inertial>
-        
-
-        <visual>
-            <geometry>
-                <cylinder length="0.02" radius="0.01"/>
-            </geometry>
-            <material name="yellow"/>
-        </visual>
-    </link>
+    <link name="base_link" />
     <link name="link1">
         <inertial>
             <mass value="0.5"/>
-            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+            <origin rpy="0 1.570796327 0" xyz="0.25 0 0.0"/>
             <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0.0" ixz="0.0" iyz="0.0"/>
         </inertial>
 
         <visual>
-            <origin rpy="0 -1.570796327 0" xyz="0.25 0 0.0"/>
+            <origin rpy="0 1.570796327 0" xyz="0.25 0 0.0"/>
             <geometry>
                 <cylinder length="0.5" radius="0.02"/>
             </geometry>
@@ -74,7 +60,7 @@
     <link name="link2">
         <inertial>
             <mass value="0.5"/>
-            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+            <origin rpy="0 1.570796327 0" xyz="0.25 0 0.0"/>
             <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0.0" ixz="0.0" iyz="0.0"/>
         </inertial>
 
@@ -89,12 +75,12 @@
     <link name="link3">
         <inertial>
             <mass value="0.5"/>
-            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+            <origin rpy="0 1.570796327 0" xyz="0.25 0 0.0"/>
             <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0.0" ixz="0.0" iyz="0.0"/>
         </inertial>
 
         <visual>
-            <origin rpy="0 -1.570796327 0" xyz="0.25 0 0.0"/>
+            <origin rpy="0 1.570796327 0" xyz="0.25 0 0.0"/>
             <geometry>
                 <cylinder length="0.5" radius="0.02"/>
             </geometry>

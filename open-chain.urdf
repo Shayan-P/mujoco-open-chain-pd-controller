@@ -34,7 +34,7 @@
     <joint name="ee_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.5 0.0 0.0"/>
         <parent link="link3"/>
-        <child link="ee_link"/>
+        <child link="end_effector"/>
     </joint>
 
     <!-- ********** INERTIAL PROPERTIES (LINKS) ********** -->
@@ -102,5 +102,13 @@
         </visual>
     </link>
 
-    <link name="ee_link"/>
+    <link name="end_effector">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <sphere radius="0.05"/>
+            </geometry>
+            <material name="yellow"/>
+        </visual>
+    </link>
 </robot>

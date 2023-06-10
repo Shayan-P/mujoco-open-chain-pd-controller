@@ -15,7 +15,7 @@ end
 
 function get_tracker_position(t)
     r = 1
-    ω = 0.0 # todo 0 for now. 
+    ω = 1.0
     pd = r .* [cos(ω * t), 0, sin(ω * t)]
     vd = r * ω .* [-sin(ω * t), 0, cos(ω * t)]
     return pd, vd
@@ -60,3 +60,4 @@ end
 
 viewer[:close]()
 plot_logs()
+plot_controller_logs()

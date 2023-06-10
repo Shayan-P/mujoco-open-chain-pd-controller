@@ -1,0 +1,4 @@
+.vscode
+tmp/
+.ipynb_checkpoints/
+test pinnocchio.ipynb

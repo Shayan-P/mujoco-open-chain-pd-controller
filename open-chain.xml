@@ -40,8 +40,11 @@
   </worldbody>
 
   	<actuator>
-        <motor joint="joint1" name="torque1" gear="1" ctrllimited="true" ctrlrange="-5 5" />
+        <!-- <motor joint="joint1" name="torque1" gear="1" ctrllimited="true" ctrlrange="-5 5" />
         <motor joint="joint2" name="torque2" gear="1" ctrllimited="true" ctrlrange="-5 5" />
-        <motor joint="joint3" name="torque3" gear="1" ctrllimited="true" ctrlrange="-5 5" />
+        <motor joint="joint3" name="torque3" gear="1" ctrllimited="true" ctrlrange="-5 5" /> -->
+        <motor joint="joint1" name="torque1" gear="1" ctrllimited="false" />
+        <motor joint="joint2" name="torque2" gear="1" ctrllimited="false" />
+        <motor joint="joint3" name="torque3" gear="1" ctrllimited="false" />
 	</actuator>
 </mujoco>

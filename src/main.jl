@@ -1,10 +1,8 @@
-using MuJoCo 
-using MuJoCo.PythonCall
-
+include("python-imports.jl")
 include("controllers.jl")
 include("logger.jl")
 
-xml_path = joinpath(@__DIR__, "open-chain.xml")
+xml_path = joinpath(joinpath(dirname(@__DIR__), "models"), "open-chain.xml")
 
 model = mujoco.MjModel.from_xml_path(xml_path)
 data = mujoco.MjData(model)
@@ -25,7 +23,7 @@ function apply_tracker_position!(model, data, pd)
     model.body("tracker-ball").pos = pd;
 end
 
-let visualize::Bool = false # use to turn on\off visualizer
+let visualize::Bool = true # use to turn on\off visualizer
     global function get_viewer(model, data)
         if visualize
             viewer = mujoco_viewer.MujocoViewer(model, data)

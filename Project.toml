@@ -1,0 +1,10 @@
+name = "MujocoOpenChainPDController"
+uuid = "9b300067-b822-4753-8ae6-980ce6318dac"
+authors = ["Shayan-P <shayanpardis82@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"

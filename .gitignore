@@ -2,3 +2,4 @@
 tmp/
 .ipynb_checkpoints/
 test pinnocchio.ipynb
+.CondaPkg

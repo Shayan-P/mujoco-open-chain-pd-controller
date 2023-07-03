@@ -1,8 +1,6 @@
-using PythonCall
-using MuJoCo
-
-let pin = pyimport("pinocchio")
-    model = pin.buildModelFromUrdf("open-chain.urdf")
+let
+    urdf_path = joinpath(joinpath(dirname(@__DIR__), "models"), "open-chain.urdf")
+    model = pin.buildModelFromUrdf(urdf_path)
     data = model.createData()
     
     model.gravity.linear = numpy.array([0, 0, -9.8]) # manually set here. urdf does not have gravity description

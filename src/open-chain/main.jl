@@ -2,7 +2,7 @@ include("python-imports.jl")
 include("controllers.jl")
 include("logger.jl")
 
-xml_path = joinpath(joinpath(dirname(@__DIR__), "models"), "open-chain.xml")
+xml_path = joinpath(@__DIR__, "open-chain.xml")
 
 model = mujoco.MjModel.from_xml_path(xml_path)
 data = mujoco.MjData(model)

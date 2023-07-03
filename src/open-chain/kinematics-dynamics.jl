@@ -1,5 +1,5 @@
 let
-    urdf_path = joinpath(joinpath(dirname(@__DIR__), "models"), "open-chain.urdf")
+    urdf_path = joinpath(@__DIR__, "open-chain.urdf")
     model = pin.buildModelFromUrdf(urdf_path)
     data = model.createData()
     
